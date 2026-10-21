@@ -210,11 +210,11 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/teaser.jpg"><source src="./website_content/videos/teaser.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>ScaLa in 30 seconds.</b> A text prompt describes an action, and a video generator renders a person who performs it.
-        Pose estimation lifts the motion to 3D, and a physics controller keeps only motion that a simulated body can execute.
-        Repeated across thousands of actions on the JUPITER Booster, this recipe produces 35,000 hours of motion.
-        The generated clips are examples from our earlier experiments with open video models.
-        The bodies in the field are captured AMASS motions that illustrate the dataset.
+        <b>ScaLa in 36 seconds.</b> Five real LTX-2 clips: the prompt names a seat, and the generator renders a man who walks to it and sits down.
+        Each clip hangs on a virtual camera at the place where its generating camera stood. Seen from that camera, the 3D body lifted from
+        the clip covers the person, and every seat is built at the height measured from the lifted hips, so nothing penetrates.
+        A physics controller keeps only motion that a simulated body can execute. Repeated across thousands of actions on the JUPITER Booster,
+        this recipe produces 35,000 hours of motion, and humanoid robots learn from human motion (SONIC footage, credited on screen).
       </figcaption>
     </figure>
   </div>
@@ -239,7 +239,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/data_gap.jpg"><source src="./website_content/videos/data_gap.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>The data gap.</b> AMASS holds about 40 hours of laboratory capture, or 17 million tokens with our tokenizer. ScaLa generates 35,000 hours, 875 times AMASS. Capture grows by one recording session at a time. On JUPITER, one node makes 1.6 hours of motion per hour, and eight nodes make 13.1, because the clips are independent of each other. The capture card is schematic.
+        <b>The data gap.</b> Capture records motion one studio session at a time: AMASS holds about 40 hours, and Kimodo gathers about 700. ScaLa generates 35,000 hours, 875 times AMASS, which takes motion from 17 million tokens to 15.1 billion, next to the 300 billion of GPT-3. On JUPITER the clips are independent, so one node makes 1.6 hours of motion per hour and eight nodes make 13.1. The bodies on the tiles are captured AMASS motions, and the clips that fly out of the nodes are real generated clips.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -259,7 +259,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/overview.jpg"><source src="./website_content/videos/overview.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Overview of the ScaLa pipeline.</b> Four research questions map one-to-one onto four objectives and four work packages. WP1 builds the data instrument and produces the open dataset. WP2 measures scaling laws on that dataset, and WP3 compares two video generators on fixed prompts. WP4 trains the 16B foundation model, fine-tunes it with reinforcement learning and retargets its motion onto humanoid robots. The counters give the node-hours of each work package.
+        <b>Overview of the ScaLa pipeline.</b> Four research questions map onto four work packages. WP1 builds the data instrument and the open dataset, which flows into the scaling-law grid of WP2 and the generator comparison of WP3. WP2 selects the configuration of the 16B foundation model in WP4, which is fine-tuned with reinforcement learning and retargeted onto humanoid robots. Each platform shows its node-hours.
       </figcaption>
     </figure>
     <div class="cards four">
@@ -281,12 +281,12 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/instrument.jpg"><source src="./website_content/videos/instrument.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a prompt to physically executable 3D motion.</b> The instrument turns a text prompt into physically executable 3D motion in three stages: video generation, pose estimation and physics stabilization. Two gates reject clips with generation artifacts and motion that the physics controller cannot track. The full pipeline takes 12.23 GPU-seconds per 5-second clip, so one JUPITER node produces 1.6 hours of motion per hour. The example clip is a generated video from our earlier experiments; the rates are those of LTX-2.3, FlowHMR and PHC on JUPITER. The artifacts and the clip stream are drawn for illustration.
+        <b>From a prompt to physically executable 3D motion.</b> One real clip goes through the instrument. A prompt goes in, and the generator renders a man who walks to a bar stool and sits down (an LTX-2 example; the rate shown is that of LTX-2.3). Seen from the generating camera, the lifted body covers the person, and the seat is built at the height measured from the lifted hips. A physics controller keeps only motion that a simulated body can execute, two gates reject artefacts and untrackable motion, and one JUPITER node makes 1.6 hours of motion per hour. Rejected clips are drawn for illustration.
       </figcaption>
     </figure>
     <div class="body-text">
       <p>Two observations make it possible to generate motion data at large scale without motion capture hardware. First, video generative models learn motion from messy web video and render it in clean, controlled settings: static camera, no occlusion, fully visible body. Monocular 3D pose estimators are most accurate in exactly this setting. Second, pose estimation and physics stabilization extract stable and diverse 3D motion from these videos, and this motion trains a foundation model for human motion.</p>
-      <p>Every stage measures or enforces the quality of its output. A threshold on pose-estimation confidence rejects clips with generation artifacts. The physics tracker follows each sequence in simulation, and the pipeline discards every sequence that it cannot track, so every retained motion is physically executable. On about 4,000 internet videos, a physics controller can track 82.5% of the motion from FlowHMR, against 62.8% for GVHMR. Held-out motion capture from AMASS validates the data through distributional metrics and downstream task performance.</p>
+      <p>Every stage measures or enforces the quality of its output. A threshold on pose-estimation confidence rejects clips with generation artefacts. The physics tracker follows each sequence in simulation, and the pipeline discards every sequence that it cannot track, so every retained motion is physically executable. On about 4,000 internet videos, a physics controller can track 82.5% of the motion from FlowHMR, against 62.8% for GVHMR. Held-out motion capture from AMASS validates the data through distributional metrics and downstream task performance.</p>
     </div>
     <div class="tablewrap">
       <table>
@@ -305,7 +305,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/prompts.jpg"><source src="./website_content/videos/prompts.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Diversity by construction.</b> Text prompts set the content of every clip. The action changes, but the camera and the framing stay fixed, because monocular pose estimation is most accurate with a static camera and a fully visible body. The prompt taxonomy covers locomotion, manipulation, interaction and combined behaviours, far beyond the roughly 300 actions in AMASS. Every sequence records its prompt, generator and filters, and the data holds no real footage and no personal data. The sliders and the composition card are schematic.
+        <b>Diversity by construction.</b> Text prompts set the content of every clip, and the framing stays fixed for accurate pose estimation. Five real LTX-2 clips differ only in the seat word, and each lifted body sits on a seat built at its measured height. Twenty-six Wan2.1 VACE clips that we generated on HX3 cover the prompt taxonomy (locomotion, manipulation, interaction, combined behaviours and sports), each with its lifted body, far beyond the roughly 300 actions in AMASS. Every clip records its prompt, generator and filters. The dot fields are illustrations of the counts.
       </figcaption>
     </figure>
   </div>
@@ -321,7 +321,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/tokens.jpg"><source src="./website_content/videos/tokens.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Tokenizer and autoregressive motion model.</b> A VQ-VAE tokenizer turns each frame of motion into four tokens: root trajectory, body, left hand and right hand. At 30 frames per second, one hour of motion becomes 432,000 tokens. The full dataset holds 15.1 billion tokens, against 17 million in AMASS. An autoregressive transformer reads the stream and predicts the next token, and the decoded tokens become motion again. The body is a captured AMASS motion; the token ids and the prediction beat are schematic.
+        <b>Tokenizer and autoregressive motion model.</b> A VQ-VAE tokenizer turns each frame of motion into four tokens: root trajectory, body, left hand and right hand. At 30 frames per second, one hour of motion becomes 432,000 tokens. AMASS holds 17 million tokens, and the ScaLa dataset holds 15.1 billion. An autoregressive transformer reads the token stream and predicts the next tokens, and the decoded tokens become motion again. The body is a captured AMASS motion, and the decoded motion is an illustration.
       </figcaption>
     </figure>
   </div>
@@ -337,7 +337,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/scaling.jpg"><source src="./website_content/videos/scaling.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">schematic curves</span><b>The scaling-law grid.</b> WP2 trains 141 motion models: eight sizes from 100M to 16B parameters, six dataset scales from 150 to 35,000 hours, three seeds each. Each run gives one point, and the lower envelope of the curves gives the scaling law for motion synthesis. The same test on held-out real motion capture gives the synthetic-to-real exchange rate, and capped repeated passes measure when new data beats repetition. The law is refit after every data batch, and generation stops early if the law saturates. All curves are schematic: the exponents and the exchange rate are what ScaLa measures.
+        <span class="schem">illustration</span><b>The scaling-law grid.</b> WP2 trains 141 motion models: eight sizes from 100M to 16B parameters, six dataset scales from 150 to 35,000 hours, three seeds each. Seen along the compute axis, the lower envelope of the runs is the scaling law. The same comparison on real capture gives the synthetic-to-real exchange rate, and capped repeated passes show when new data beats repetition. The law is refit after every data batch. Loss heights, curves, the exponent and the exchange rate are illustrations: ScaLa measures them.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -357,7 +357,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/generators.jpg"><source src="./website_content/videos/generators.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">schematic comparison</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. Pose estimation, physics stabilization and the motion models are identical, so only the generator differs. Wan2.2 needs about 166 times the GPU time per clip (441 s on a 4-GPU node against 10.65 s on one GPU). The comparison shows whether progress in video generation turns into progress in motion. The silhouettes are an abstract stand-in for both generators, and the metric columns are schematic.
+        <span class="schem">illustration</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. One Wan2.2 clip costs the GPU time of about 166 LTX-2.3 clips (441 s on a 4-GPU node against 10.65 s on one GPU). Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion. The panes show real example clips (LTX-2 and Wan2.2); the balance is an illustration.
       </figcaption>
     </figure>
   </div>
@@ -373,7 +373,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/embodied.jpg"><source src="./website_content/videos/embodied.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a motion foundation model to humanoid robots.</b> WP4 trains a family of foundation motion models from 100M to 16B parameters, and the 16B model trains on all 35,000 hours. PPO with physics rollouts in ProtoMotions then fine-tunes the 2B, 8B and 16B models to follow paths, keep contacts and avoid obstacles: 27 runs. Retargeting maps the generated human motion onto a humanoid robot skeleton. The walk and the kick are captured motions (HPS and AMASS), the rollouts are schematic and the robot is drawn procedurally.
+        <b>From a motion foundation model to humanoid robots.</b> WP4 trains a family of foundation motion models from 100M to 16B parameters, and the 16B model trains on all 35,000 hours. PPO with physics rollouts in ProtoMotions then fine-tunes the 2B, 8B and 16B models to follow paths, keep contacts and avoid obstacles. Real humanoids copy only the motions in their motion prior, as the SONIC footage shows (NVIDIA, Science Robotics 2026), and ScaLa widens that prior from 40 hours to 35,000. The rollouts are an illustration; the walk and the robot motions in the dioramas are captured human motion.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -392,7 +392,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/jupiter.jpg"><source src="./website_content/videos/jupiter.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Budget, scaling and schedule.</b> ScaLa requests 90,000 node-hours on the JUPITER Booster: 25% generates the data and 75% trains and fine-tunes the models. Data generation needs no communication between GPUs, so its throughput grows linearly with the number of nodes. FSDP training keeps 93.8 to 95.7% parallel efficiency at 64 nodes for the 2B, 8B and 16B models. The plan uses about 45,000 node-hours per quarter.
+        <b>Budget, scaling and schedule.</b> ScaLa requests 90,000 node-hours on the JUPITER Booster. Generated clips are independent, so data generation grows linearly with the number of nodes: one node makes 1.6 hours of motion per hour. FSDP training keeps 93.8 to 95.7% parallel efficiency on 64 nodes, measured on JUPITER. Generation leads in months 1 to 3, and training grows as the data arrives; the pattern of lit nodes follows the plan in the Gantt chart.
       </figcaption>
     </figure>
     <div class="tablewrap">
@@ -455,16 +455,17 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
   <div class="wrap">
     <div class="sec-head"><span class="label l0">Notes</span><h2>About the animations</h2></div>
     <ul class="notes">
-      <li>Every number in the animations is quoted from the proposal. Rates and scaling efficiencies are measured on JUPITER under Benchmark Access.</li>
-      <li>ScaLa has not run yet. Curves and bars marked <span class="schem">schematic</span> show what the project measures, not results.</li>
-      <li>The generated clips are examples from our earlier experiments with open video models. Clips labelled Wan2.2 come from Wan2.2. No clip on this page comes from LTX-2.3.</li>
-      <li>The 3D bodies are captured motions from AMASS and from HPS, rendered with the SMPL body model. They illustrate the kind of data that the pipeline produces.</li>
+      <li>The animations explain the plan; they are not results. Every number in them is quoted from the proposal, and rates and scaling efficiencies are measured on JUPITER under Benchmark Access. Values that ScaLa will measure (losses, exponents, the exchange rate, the generator comparison) are drawn for illustration and tagged as such.</li>
+      <li>Generated clips: LTX-2 clips of a man sitting on seats of different heights (our earlier prototype; the proposal uses LTX-2.3), Wan2.2 clips, and Wan2.1 VACE-14B text-to-video clips that we generated for this page on the Imperial HX3 cluster.</li>
+      <li>3D bodies: lifted from the generated clips with NLF (Neural Localizer Fields), aligned to the floor and smoothed, and rendered with the SMPL body model; seats are built at the height measured from the lifted hips. The proposal uses FlowHMR and PHC for these stages. Other bodies are captured motions from AMASS and HPS.</li>
+      <li>Robot footage: SONIC, NVIDIA (Science Robotics 2026), from its project page, credited wherever it appears.</li>
     </ul>
   </div>
 </section>
 
 <footer>
-  ScaLa · Imperial College London · Supplementary material for the EuroHPC AI Factories Access proposal on the JUPITER Booster
+  ScaLa · Imperial College London · Supplementary material for the EuroHPC AI Factories Access proposal on the JUPITER Booster<br>
+  <a href="./website_v1/index.html">Version 1 of this page</a>
 </footer>
 
 <script>
