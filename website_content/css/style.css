@@ -45,6 +45,7 @@ a:hover { text-decoration: underline; }
 .team span { white-space: nowrap; }
 .team .role { color: var(--faint); font-size: 14px; }
 .affil { color: var(--muted); font-size: 16px; margin-top: 4px; }
+.funding { color: var(--muted); font-size: 15px; margin-top: 6px; font-style: italic; }
 .call { margin: 22px auto 0; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .pill {
   display: inline-block; font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
