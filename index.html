@@ -219,7 +219,6 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
         the person, and every seat is built at the height measured from the lifted hips, so nothing penetrates. A physics controller
         keeps only motion that a simulated body can execute. Repeated across thousands of actions on the JUPITER Booster, this recipe
         produces 35,000 hours of motion, and humanoid robots learn from human motion (SONIC footage, credited on screen).
-        The clips are real web videos that stand in for generated clips (illustration; sources at the end of the page).
       </figcaption>
     </figure>
   </div>
@@ -286,7 +285,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/instrument.jpg"><source src="./website_content/videos/instrument.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a prompt to physically executable 3D motion.</b> The instrument turns a text prompt into physically executable 3D motion. A video generator renders the clip, pose estimation lifts the body into world coordinates, and a physics tracker keeps only motion that a simulated body can execute. Seen from the camera, the lifted body covers the person, and outside the camera the chair is built at the height measured from the lifted hips. Two gates reject generation artefacts and untrackable motion. At 12.23 GPU-seconds per clip, one JUPITER node makes 1.6 hours of motion per hour. Real web videos stand in for generated clips; the rejects and the raw-estimate artefacts are drawn for illustration.
+        <b>From a prompt to physically executable 3D motion.</b> The instrument turns a text prompt into physically executable 3D motion. A video generator renders the clip, pose estimation lifts the body into world coordinates, and a physics tracker keeps only motion that a simulated body can execute. Seen from the camera, the lifted body covers the person, and outside the camera the chair is built at the height measured from the lifted hips. Two gates reject generation artefacts and untrackable motion. At 12.23 GPU-seconds per clip, one JUPITER node makes 1.6 hours of motion per hour. The rejects and the raw-estimate artefacts are drawn for illustration.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -310,7 +309,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/prompts.jpg"><source src="./website_content/videos/prompts.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Diversity by construction.</b> Text prompts set the content of every clip, and the framing stays fixed for accurate pose estimation. As the seat word changes, each lifted body sits on a seat built at its measured height. The prompt taxonomy covers locomotion, manipulation, interaction, combined behaviours and sports, far beyond the roughly 300 actions in AMASS. ScaLa stores the prompt, generator and filters of every sequence (the record shown is an illustration). Real web videos stand in for generated clips.
+        <b>Diversity by construction.</b> Text prompts set the content of every clip, and the framing stays fixed for accurate pose estimation. As the seat word changes, each lifted body sits on a seat built at its measured height. The prompt taxonomy covers locomotion, manipulation, interaction, combined behaviours and sports, far beyond the roughly 300 actions in AMASS. ScaLa stores the prompt, generator and filters of every sequence (the record shown is an illustration).
       </figcaption>
     </figure>
   </div>
@@ -362,7 +361,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/generators.jpg"><source src="./website_content/videos/generators.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">illustration</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. In the GPU time of one Wan2.2 clip, LTX-2.3 makes about 166. Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion. Real web videos stand in for generated clips; the balance is an illustration.
+        <span class="schem">illustration</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. In the GPU time of one Wan2.2 clip, LTX-2.3 makes about 166. Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion. The balance is an illustration.
       </figcaption>
     </figure>
   </div>
@@ -461,7 +460,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <div class="sec-head"><span class="label l0">Notes</span><h2>About the animations</h2></div>
     <ul class="notes">
       <li>The animations explain the plan; they are not results. Every number in them is quoted from the proposal, and rates and scaling efficiencies are measured on JUPITER under Benchmark Access. Values that ScaLa will measure (losses, exponents, the exchange rate, the generator comparison) are drawn for illustration and tagged as such.</li>
-      <li>Clips shown large are real web videos that stand in for generated clips, so that the motion on screen is physically correct; they are tagged on screen as an illustration and credited below. Small background panes show clips from open video generators (LTX-2, Wan2.2 and Wan2.1 VACE-14B).</li>
+      <li>Clips shown large are real web videos that stand in for generated clips, so that the motion on screen is physically correct; their sources are listed below. Small background panes show clips from open video generators (LTX-2, Wan2.2 and Wan2.1 VACE-14B).</li>
       <li>3D bodies: lifted from the clips with NLF (Neural Localizer Fields), aligned to the floor and smoothed, and rendered with the SMPL body model; seats are built at the height measured from the lifted hips. The proposal uses FlowHMR and PHC for these stages. Other bodies are captured motions from AMASS and HPS.</li>
       <li>Robot footage: SONIC, NVIDIA (Science Robotics 2026), from its project page, credited wherever it appears.</li>
     </ul>
