@@ -337,7 +337,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/scaling.jpg"><source src="./website_content/videos/scaling.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">schematic curves</span><b>The scaling-law grid.</b> 
+        <span class="schem">schematic curves</span><b>The scaling-law grid.</b> WP2 trains 141 motion models: eight sizes from 100M to 16B parameters, six dataset scales from 150 to 35,000 hours, three seeds each. Each run gives one point, and the lower envelope of the curves gives the scaling law for motion synthesis. The same test on held-out real motion capture gives the synthetic-to-real exchange rate, and capped repeated passes measure when new data beats repetition. The law is refit after every data batch, and generation stops early if the law saturates. All curves are schematic: the exponents and the exchange rate are what ScaLa measures.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -357,7 +357,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/generators.jpg"><source src="./website_content/videos/generators.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">schematic comparison</span><b>A controlled two-generator ablation.</b> 
+        <span class="schem">schematic comparison</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. Pose estimation, physics stabilization and the motion models are identical, so only the generator differs. Wan2.2 needs about 166 times the GPU time per clip (441 s on a 4-GPU node against 10.65 s on one GPU). The comparison shows whether progress in video generation turns into progress in motion. The silhouettes are an abstract stand-in for both generators, and the metric columns are schematic.
       </figcaption>
     </figure>
   </div>
@@ -371,9 +371,9 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
       <p class="lead">A robot learns by imitation only the behaviours in its motion prior. ScaLa widens that prior.</p>
     </div>
     <figure>
-      <div class="video"><div style="aspect-ratio:2560/1088;display:grid;place-items:center;color:#8b93a1">animation pending</div></div>
+      <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/embodied.jpg"><source src="./website_content/videos/embodied.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a motion foundation model to humanoid robots.</b> 
+        <b>From a motion foundation model to humanoid robots.</b> WP4 trains a family of foundation motion models from 100M to 16B parameters, and the 16B model trains on all 35,000 hours. PPO with physics rollouts in ProtoMotions then fine-tunes the 2B, 8B and 16B models to follow paths, keep contacts and avoid obstacles: 27 runs. Retargeting maps the generated human motion onto a humanoid robot skeleton. The walk and the kick are captured motions (HPS and AMASS), the rollouts are schematic and the robot is drawn procedurally.
       </figcaption>
     </figure>
     <div class="body-text">
