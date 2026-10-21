@@ -143,3 +143,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
   .video { border-radius: 10px; }
   p, figcaption { text-align: left; }
 }
+
+.credits { font-size: 13.5px; color: var(--muted); columns: 2; column-gap: 28px; padding-left: 18px; }
+.credits li { break-inside: avoid; margin-bottom: 4px; }
+@media (max-width: 700px) { .credits { columns: 1; } }

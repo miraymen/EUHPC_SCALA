@@ -154,6 +154,10 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
   p, figcaption { text-align: left; }
 }
 
+.credits { font-size: 13.5px; color: var(--muted); columns: 2; column-gap: 28px; padding-left: 18px; }
+.credits li { break-inside: avoid; margin-bottom: 4px; }
+@media (max-width: 700px) { .credits { columns: 1; } }
+
 </style>
 </head>
 <body>
@@ -210,11 +214,12 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/teaser.jpg"><source src="./website_content/videos/teaser.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>ScaLa in 36 seconds.</b> Five real LTX-2 clips: the prompt names a seat, and the generator renders a man who walks to it and sits down.
-        Each clip hangs on a virtual camera at the place where its generating camera stood. Seen from that camera, the 3D body lifted from
-        the clip covers the person, and every seat is built at the height measured from the lifted hips, so nothing penetrates.
-        A physics controller keeps only motion that a simulated body can execute. Repeated across thousands of actions on the JUPITER Booster,
-        this recipe produces 35,000 hours of motion, and humanoid robots learn from human motion (SONIC footage, credited on screen).
+        <b>ScaLa in 36 seconds.</b> The prompt names a seat, and the video shows a person who walks to it and sits down. Each clip
+        hangs on a virtual camera at the place where its camera stood. Seen from that camera, the 3D body lifted from the clip covers
+        the person, and every seat is built at the height measured from the lifted hips, so nothing penetrates. A physics controller
+        keeps only motion that a simulated body can execute. Repeated across thousands of actions on the JUPITER Booster, this recipe
+        produces 35,000 hours of motion, and humanoid robots learn from human motion (SONIC footage, credited on screen).
+        The clips are real web videos that stand in for generated clips (illustration; sources at the end of the page).
       </figcaption>
     </figure>
   </div>
@@ -281,7 +286,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/instrument.jpg"><source src="./website_content/videos/instrument.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a prompt to physically executable 3D motion.</b> One real clip goes through the instrument. A prompt goes in, and the generator renders a man who walks to a bar stool and sits down (an LTX-2 example; the rate shown is that of LTX-2.3). Seen from the generating camera, the lifted body covers the person, and the seat is built at the height measured from the lifted hips. A physics controller keeps only motion that a simulated body can execute, two gates reject artefacts and untrackable motion, and one JUPITER node makes 1.6 hours of motion per hour. Rejected clips are drawn for illustration.
+        <b>From a prompt to physically executable 3D motion.</b> The instrument turns a text prompt into physically executable 3D motion. A video generator renders the clip, pose estimation lifts the body into world coordinates, and a physics tracker keeps only motion that a simulated body can execute. Seen from the camera, the lifted body covers the person, and outside the camera the chair is built at the height measured from the lifted hips. Two gates reject generation artefacts and untrackable motion. At 12.23 GPU-seconds per clip, one JUPITER node makes 1.6 hours of motion per hour. Real web videos stand in for generated clips; the rejects and the raw-estimate artefacts are drawn for illustration.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -305,7 +310,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/prompts.jpg"><source src="./website_content/videos/prompts.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Diversity by construction.</b> Text prompts set the content of every clip, and the framing stays fixed for accurate pose estimation. Five real LTX-2 clips differ only in the seat word, and each lifted body sits on a seat built at its measured height. Twenty-six Wan2.1 VACE clips that we generated on HX3 cover the prompt taxonomy (locomotion, manipulation, interaction, combined behaviours and sports), each with its lifted body, far beyond the roughly 300 actions in AMASS. Every clip records its prompt, generator and filters. The dot fields are illustrations of the counts.
+        <b>Diversity by construction.</b> Text prompts set the content of every clip, and the framing stays fixed for accurate pose estimation. As the seat word changes, each lifted body sits on a seat built at its measured height. The prompt taxonomy covers locomotion, manipulation, interaction, combined behaviours and sports, far beyond the roughly 300 actions in AMASS. ScaLa stores the prompt, generator and filters of every sequence (the record shown is an illustration). Real web videos stand in for generated clips.
       </figcaption>
     </figure>
   </div>
@@ -357,7 +362,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/generators.jpg"><source src="./website_content/videos/generators.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <span class="schem">illustration</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. One Wan2.2 clip costs the GPU time of about 166 LTX-2.3 clips (441 s on a 4-GPU node against 10.65 s on one GPU). Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion. The panes show real example clips (LTX-2 and Wan2.2); the balance is an illustration.
+        <span class="schem">illustration</span><b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. In the GPU time of one Wan2.2 clip, LTX-2.3 makes about 166. Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion. Real web videos stand in for generated clips; the balance is an illustration.
       </figcaption>
     </figure>
   </div>
@@ -456,10 +461,11 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <div class="sec-head"><span class="label l0">Notes</span><h2>About the animations</h2></div>
     <ul class="notes">
       <li>The animations explain the plan; they are not results. Every number in them is quoted from the proposal, and rates and scaling efficiencies are measured on JUPITER under Benchmark Access. Values that ScaLa will measure (losses, exponents, the exchange rate, the generator comparison) are drawn for illustration and tagged as such.</li>
-      <li>Generated clips: LTX-2 clips of a man sitting on seats of different heights (our earlier prototype; the proposal uses LTX-2.3), Wan2.2 clips, and Wan2.1 VACE-14B text-to-video clips that we generated for this page on the Imperial HX3 cluster.</li>
-      <li>3D bodies: lifted from the generated clips with NLF (Neural Localizer Fields), aligned to the floor and smoothed, and rendered with the SMPL body model; seats are built at the height measured from the lifted hips. The proposal uses FlowHMR and PHC for these stages. Other bodies are captured motions from AMASS and HPS.</li>
+      <li>Clips shown large are real web videos that stand in for generated clips, so that the motion on screen is physically correct; they are tagged on screen as an illustration and credited below. Small background panes show clips from open video generators (LTX-2, Wan2.2 and Wan2.1 VACE-14B).</li>
+      <li>3D bodies: lifted from the clips with NLF (Neural Localizer Fields), aligned to the floor and smoothed, and rendered with the SMPL body model; seats are built at the height measured from the lifted hips. The proposal uses FlowHMR and PHC for these stages. Other bodies are captured motions from AMASS and HPS.</li>
       <li>Robot footage: SONIC, NVIDIA (Science Robotics 2026), from its project page, credited wherever it appears.</li>
     </ul>
+    <div class="notes"><h3 style="margin-top:28px">Web video sources</h3><ul class="credits"><li>5. Sit to Stand Transfers and Walker Safety, Emily Robinson (youtube.com/watch?v=NuJNZonegCk)</li><li>How to Get Out of Any Low Chair Without Help (Even at the Beach!), Alyssa Kuhn, Arthritis Adventure (youtube.com/watch?v=MmHaz1wYxyA)</li><li>Quick reference guide: Sit To Stand (Front and Side View), Get Moving Cambridge (youtube.com/watch?v=4q5QkoLbnrs)</li><li>Step Stool for Bed | 3 Options to Know!, EquipMeOT (youtube.com/watch?v=eNsiHUYNl_g)</li><li>The Best Way To Sit And Stand (Including Sitting On Higher Bar Stools), Fit For Real Life (youtube.com/watch?v=KcNUater47k)</li><li>5   Dynamic Balance   Sit Stand with Arms, Side View, Safe Communities Madison-Dane County (youtube.com/watch?v=Txw_6vC_K0U)</li><li>Sit to Stand, Baptist Health (youtube.com/watch?v=ITv-_BkcrD0)</li><li>Bear Crawl, BSR Physical Therapy (youtube.com/watch?v=Ee1BQNI6zN4)</li><li>Broad Jump Back Pedal - Kristy Lee Wilson, Kristy Lee Wilson (youtube.com/watch?v=8Q9mIVx1lH8)</li><li>Proper Step Ups/Downs, [P]rehab (youtube.com/watch?v=elhu-WC1qk4)</li><li>Phases of Walking Gait, Kevin Kirby (youtube.com/watch?v=HypJY1XWkWY)</li><li>How to Lift Box Properly, Revival Performance Physical Therapy (youtube.com/watch?v=c_yOXufO5wg)</li><li>Single Arm Suitcase Kettlebell Deadlift | Exercise Demo, Red Dot Fitness (youtube.com/watch?v=EQJ2_e8D1aU)</li><li>3 Most Important Exercises to EASILY Get Up from the Floor, Alyssa Kuhn, Arthritis Adventure (youtube.com/watch?v=Ymr_YCe0WhA)</li><li>Kneel on the Floor and Stand Back Up EASILY | Functional Mobility Progression, Movement &amp; Function (youtube.com/watch?v=q7euFLOlsUQ)</li><li>How Get Up Safely With The Kneel To Stand Exercise, Back In Shape Program (youtube.com/watch?v=_lNjijhxtNY)</li><li>Slow Motion Squat Technique- Side View, justlivelifelaughing (youtube.com/watch?v=u5rz6q0Uynw)</li><li>Jumping Jacks - XFit Daily, XHIT Daily (youtube.com/watch?v=iSSAk4XCsRA)</li><li>Reverse and Side Lunge Compound Exercise Mini-Workout, CreekTV (youtube.com/watch?v=m-rjn5uPn5c)</li><li>Overhand throw, Vitathread (youtube.com/watch?v=dusz0WUYZxk)</li><li>Parkour Basic Vaults Tutorial (Kong, Speed, Dash, Reverse, etc) | Fraser Malik How to, Ginger Ninja Trickster (youtube.com/watch?v=LbS2KZ6okHI)</li><li>Toe Touch Stretch, Fitbee (youtube.com/watch?v=5xbIiOhUk8I)</li></ul></div>
   </div>
 </section>
 
