@@ -281,7 +281,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/instrument.jpg"><source src="./website_content/videos/instrument.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a prompt to physically executable 3D motion.</b> 
+        <b>From a prompt to physically executable 3D motion.</b> The instrument turns a text prompt into physically executable 3D motion in three stages: video generation, pose estimation and physics stabilization. Two gates reject clips with generation artifacts and motion that the physics controller cannot track. The full pipeline takes 12.23 GPU-seconds per 5-second clip, so one JUPITER node produces 1.6 hours of motion per hour. The example clip is a generated video from our earlier experiments; the rates are those of LTX-2.3, FlowHMR and PHC on JUPITER. The artifacts and the clip stream are drawn for illustration.
       </figcaption>
     </figure>
     <div class="body-text">
@@ -305,7 +305,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/prompts.jpg"><source src="./website_content/videos/prompts.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Diversity by construction.</b> 
+        <b>Diversity by construction.</b> Text prompts set the content of every clip. The action changes, but the camera and the framing stay fixed, because monocular pose estimation is most accurate with a static camera and a fully visible body. The prompt taxonomy covers locomotion, manipulation, interaction and combined behaviours, far beyond the roughly 300 actions in AMASS. Every sequence records its prompt, generator and filters, and the data holds no real footage and no personal data. The sliders and the composition card are schematic.
       </figcaption>
     </figure>
   </div>
@@ -321,7 +321,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/tokens.jpg"><source src="./website_content/videos/tokens.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Tokenizer and autoregressive motion model.</b> 
+        <b>Tokenizer and autoregressive motion model.</b> A VQ-VAE tokenizer turns each frame of motion into four tokens: root trajectory, body, left hand and right hand. At 30 frames per second, one hour of motion becomes 432,000 tokens. The full dataset holds 15.1 billion tokens, against 17 million in AMASS. An autoregressive transformer reads the stream and predicts the next token, and the decoded tokens become motion again. The body is a captured AMASS motion; the token ids and the prediction beat are schematic.
       </figcaption>
     </figure>
   </div>
