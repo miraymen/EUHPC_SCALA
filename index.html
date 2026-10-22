@@ -265,7 +265,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/overview.jpg"><source src="./website_content/videos/overview.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>Overview of the ScaLa pipeline.</b> Four research questions map onto four work packages. WP1 builds the data instrument and the open dataset, which flows into the scaling-law grid of WP2 and the generator comparison of WP3. WP2 selects the configuration of the 16B foundation model in WP4, which is fine-tuned with reinforcement learning and retargeted onto humanoid robots. Each platform shows its node-hours.
+        <b>Overview of the ScaLa pipeline.</b> Four research questions map onto four work packages. WP1 builds the data instrument and the open dataset, which flows into the scaling-law grid of WP2 and the generator comparison of WP3. WP2 selects the configuration of the 16B foundation model in WP4. WP4 then fine-tunes the trained model with reinforcement learning and retargets its motion onto humanoid robots. Each platform shows its node-hours.
       </figcaption>
     </figure>
     <div class="cards four">
@@ -304,7 +304,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
           <tr class="total"><td>Full pipeline</td><td>12.23 GPU-seconds per clip, 1.6 h of motion per node-hour</td><td class="num">25.2 million clips</td><td class="num">21,504</td></tr>
         </tbody>
       </table>
-      <p class="tnote">Measured under EuroHPC Benchmark Access on JUPITER (EHPC-BEN-2026B09-023). Pose estimation: the measured best is 3.06 s per clip; the budget uses a further optimization to 1.53 s.</p>
+      <p class="tnote">Measured under EuroHPC Benchmark Access on JUPITER (EHPC-BEN-2026B09-023). Pose estimation: 1.53 s per clip is the target with our optimizations of FlowHMR for static-camera clips.</p>
     </div>
 
     <h3 class="prose" style="margin-top:60px">Text prompts control the data</h3>
@@ -343,12 +343,12 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/scaling.jpg"><source src="./website_content/videos/scaling.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>The scaling-law grid.</b> WP2 trains 141 motion models: eight sizes from 100M to 16B parameters, six dataset scales from 150 to 35,000 hours, three seeds each. Seen along the compute axis, the lower envelope of the runs is the scaling law. The same comparison on real capture gives the synthetic-to-real exchange rate, and capped repeated passes show when new data beats repetition. The law is refit after every data batch.
+        <b>The scaling-law grid.</b> WP2 trains 141 motion models: eight sizes from 100M to 16B parameters, six dataset scales from 150 to 35,000 hours, three seeds each. Seen along the compute axis, the lower envelope of the runs is the scaling law. The same comparison on real capture gives the synthetic-to-real exchange rate, and capped repeated passes show when new data beats repetition.
       </figcaption>
     </figure>
     <div class="body-text">
       <p>Autoregressive transformers of eight sizes (100M to 16B parameters) train on six dataset scales (150 to 35,000 hours) with three seeds each, using PyTorch FSDP. Each run trains on 20 tokens per parameter, the compute-optimal ratio, and stops at 32 passes over its data. The 16B run on the full dataset belongs to WP4a, which leaves 141 grid runs.</p>
-      <p>The fits give three results. The scaling laws let a group read the expected quality for its data and compute budget off a curve, as language modelling does today. The synthetic-to-real exchange rate says how many synthetic hours one real hour is worth. Because the pipeline can generate new data at any time, the repeated passes also measure when new data beats repetition. Data arrives in batches, and the project refits the law after each batch: if the law saturates before 35,000 hours, generation stops early and the unused hours go to training.</p>
+      <p>The fits give three results. The scaling laws let a group read the expected quality for its data and compute budget off a curve, as language modelling does today. The synthetic-to-real exchange rate says how many synthetic hours one real hour is worth. Because the pipeline can generate new data at any time, the repeated passes also measure when new data beats repetition.</p>
     </div>
   </div>
 </section>
@@ -363,7 +363,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/generators.jpg"><source src="./website_content/videos/generators.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. In the GPU time of one Wan2.2 clip, LTX-2.3 makes about 166. Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion.
+        <b>A controlled two-generator ablation.</b> WP3 sends the same fixed prompt subset, about 7,900 clips, through LTX-2.3 and Wan2.2. Wan2.2 takes 441 s per clip on a full node, and LTX-2.3 takes 10.65 s on one GPU. Identical pose estimation and physics stabilization lift both people to 3D, and identical motion models train on each version. The comparison shows whether progress in video generation turns into progress in motion.
       </figcaption>
     </figure>
   </div>
@@ -379,11 +379,11 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/embodied.jpg"><source src="./website_content/videos/embodied.mp4" type="video/mp4"></video></div>
       <figcaption>
-        <b>From a motion foundation model to humanoid robots.</b> WP4 trains a family of foundation motion models from 100M to 16B parameters, and the 16B model trains on all 35,000 hours. PPO with physics rollouts in ProtoMotions then fine-tunes the 2B, 8B and 16B models to follow paths, keep contacts and avoid obstacles. Real humanoids copy only the motions in their motion prior, and ScaLa widens that prior from 40 hours to 35,000.
+        <b>From a motion foundation model to humanoid robots.</b> WP4 trains a family of foundation motion models from 100M to 16B parameters, and the 16B model trains on all 35,000 hours. PPO with physics rollouts in ProtoMotions then fine-tunes the trained model to follow paths, keep contacts and avoid obstacles. Real humanoids copy only the motions in their motion prior, and ScaLa widens that prior from 40 hours to 35,000.
       </figcaption>
     </figure>
     <div class="body-text">
-      <p>The 16B model trains on the full 35,000-hour dataset with the configuration that the WP2 grid selects. Three seeds of 320 billion tokens each (21 passes) complete the top corner of the grid and give the released model. PPO with physics rollouts in ProtoMotions then fine-tunes the 2B, 8B and 16B models to follow scene constraints (paths, contacts, obstacles). Three tasks, three seeds and three model sizes give 27 runs, which measure whether embodied transfer improves with model size. Retargeting experiments map generated motion onto humanoid robot skeletons.</p>
+      <p>The 16B model trains on the full 35,000-hour dataset with the configuration that the WP2 grid selects. Three seeds of 320 billion tokens each (21 passes) complete the top corner of the grid and give the released model. PPO with physics rollouts in ProtoMotions fine-tunes the trained model to follow scene constraints (paths, contacts, obstacles). Three tasks and three seeds give 9 runs of 3.9 billion environment steps each, one node per run, and 19 short runs search the PPO hyperparameters. Retargeting experiments map generated motion onto humanoid robot skeletons.</p>
     </div>
   </div>
 </section>
@@ -411,7 +411,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
           <tr><td><span class="dot d2"></span>WP2 scaling-law grid</td><td>141 runs, PyTorch FSDP</td><td class="num">1 to 64</td><td class="num">36,720</td></tr>
           <tr><td><span class="dot d3"></span>WP3 generator ablation</td><td>Wan2.2 clip set (996) and training (5)</td><td class="num">1</td><td class="num">1,001</td></tr>
           <tr><td><span class="dot d4"></span>WP4a 16B foundation model</td><td>3 seeds of 320 billion tokens</td><td class="num">64</td><td class="num">18,880</td></tr>
-          <tr><td><span class="dot d4"></span>WP4b RL fine-tuning</td><td>PPO in ProtoMotions, 27 runs</td><td class="num">8 to 32</td><td class="num">11,835</td></tr>
+          <tr><td><span class="dot d4"></span>WP4b RL fine-tuning</td><td>PPO in ProtoMotions, 9 + 19 runs</td><td class="num">1</td><td class="num">11,835</td></tr>
           <tr><td><span class="dot d4"></span>WP4c evaluation and retargeting</td><td>evaluation suite, ProtoMotions</td><td class="num">1</td><td class="num">60</td></tr>
           <tr class="total"><td>Total</td><td>25% data generation, 75% training and fine-tuning</td><td class="num"></td><td class="num">90,000</td></tr>
         </tbody>
@@ -419,21 +419,21 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     </div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Model</th><th class="num">Nodes</th><th class="num">Tokens/s per node</th><th class="num">Parallel efficiency</th><th class="num">MFU</th></tr></thead>
+        <thead><tr><th>Model</th><th class="num">Parallel efficiency</th><th class="num">Tokens/s per node on 64 nodes</th></tr></thead>
         <tbody>
-          <tr><td>0.5B</td><td class="num">4 to 32</td><td class="num">360,700 to 337,300</td><td class="num">93.5%</td><td class="num">27 to 29%</td></tr>
-          <tr><td>2B</td><td class="num">4 to 64</td><td class="num">106,000 to 101,500</td><td class="num">95.7%</td><td class="num">34 to 35%</td></tr>
-          <tr><td>4B</td><td class="num">4 to 64</td><td class="num">57,700 to 50,700</td><td class="num">87.8% (96.7% on 16 nodes)</td><td class="num">33 to 38%</td></tr>
-          <tr><td>8B</td><td class="num">4 to 64</td><td class="num">28,600 to 27,000</td><td class="num">94.4%</td><td class="num">34 to 38%</td></tr>
-          <tr><td>16B</td><td class="num">8 to 64</td><td class="num">15,100 to 14,200</td><td class="num">93.8%</td><td class="num">36 to 39%</td></tr>
+          <tr><td>0.5B</td><td class="num">93.5% from 4 to 32 nodes</td><td class="num">runs on up to 32 nodes</td></tr>
+          <tr><td>2B</td><td class="num">95.7% from 4 to 64 nodes</td><td class="num">101,500</td></tr>
+          <tr><td>4B</td><td class="num">96.7% from 4 to 16 nodes</td><td class="num">50,700</td></tr>
+          <tr><td>8B</td><td class="num">94.4% from 4 to 64 nodes</td><td class="num">27,000</td></tr>
+          <tr><td>16B</td><td class="num">93.8% from 8 to 64 nodes</td><td class="num">14,200</td></tr>
         </tbody>
       </table>
-      <p class="tnote">Strong scaling of PyTorch FSDP on JUPITER (4× GH200 per node) at a global batch of 4.2 million tokens, measured October 2026, from the fewest to the most nodes. The throughput per node stays almost flat as nodes are added. It falls from row to row because a larger model needs more compute per token. The 16B model needs at least 8 nodes, and the 4B grid runs train on 16 nodes.</p>
+      <p class="tnote">Strong scaling of PyTorch FSDP on JUPITER (4× GH200 per node) at a global batch of 4.2 million tokens, measured October 2026. The throughput per node stays almost flat as nodes are added; it falls from row to row because a larger model needs more compute per token. The 16B model needs at least 8 nodes, and the 4B grid runs train on 16 nodes. Model FLOPs utilization (MFU) is 33 to 36% at every size.</p>
     </div>
     <div class="body-text">
       <p>The programme needs 360,000 GPU-hours within six months, which equals about 82 GPUs in continuous use. A typical 32-GPU institutional cluster would need about 15 months at full use. The 16B runs also need 64 nodes (256 GPUs) on one fast interconnect for days. Average use is about 21 nodes, roughly 0.3% of the 6,000-node JUPITER Booster, and the peak is 128 nodes.</p>
-      <p><b>Q1 (months 1 to 3).</b> Deployment check, final action taxonomy and prompt generator. Video generation runs on about 12 nodes, and pose estimation and physics stabilization process the completed batches. The full 35,000 hours are ready in month 3. The scaling-law grid runs on the dataset scales up to 15,000 hours as the data arrives, and the generator ablation is completed.</p>
-      <p><b>Q2 (months 4 to 6).</b> The grid is completed at 35,000 hours. The 16B foundation model trains on the full dataset. RL fine-tuning, evaluation and robot retargeting follow. The dataset, model weights and code are released.</p>
+      <p><b>Q1 (months 1 to 3).</b> Deployment check, final action taxonomy and prompt generator. Video generation runs on about 12 nodes, and pose estimation and physics stabilization process the completed batches. The full 35,000 hours are ready in month 3. The scaling-law grid trains on the dataset scales up to 5,000 hours as the data arrives, and starts the 15,000-hour runs. The generator ablation is completed.</p>
+      <p><b>Q2 (months 4 to 6).</b> The grid completes its 15,000- and 35,000-hour runs, with three seeds per configuration. The 16B foundation model trains on the full dataset. RL fine-tuning, evaluation and robot retargeting follow. The dataset, model weights and code are released.</p>
     </div>
   </div>
 </section>
@@ -446,7 +446,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
       <p class="lead">RQ1 and RQ2 are measurements, so the project produces a decision-grade answer even if the hypothesis fails.</p>
     </div>
     <div class="cards">
-      <div class="card c1"><span class="label l1">O1</span><h4>Instrument and dataset</h4><p>The validated generation pipeline, and 35,000 hours of physically stabilized human motion in SMPL format with hands and text annotations, released on Hugging Face with full generation provenance.</p></div>
+      <div class="card c1"><span class="label l1">O1</span><h4>Instrument and dataset</h4><p>The validated generation pipeline, and the physically stabilized SMPL motion with hands from 35,000 hours of generated video, with text annotations, released on Hugging Face with full generation provenance.</p></div>
       <div class="card c2"><span class="label l2">O2</span><h4>Scaling laws</h4><p>The first scaling laws for motion synthesis, the synthetic-to-real exchange rate and the value of repeated data.</p></div>
       <div class="card c3"><span class="label l3">O3</span><h4>Generator transfer</h4><p>A measured answer to which properties of a video generator transfer to the learned motion model.</p></div>
       <div class="card c4"><span class="label l4">O4</span><h4>Foundation model and embodied transfer</h4><p>Released model weights (100M, 300M, 0.5B, 1B, 2B, 4B, 8B and 16B parameters), RL-fine-tuned scene-conditioned synthesis in 3D environments, and retargeting onto at least one humanoid robot platform.</p></div>
