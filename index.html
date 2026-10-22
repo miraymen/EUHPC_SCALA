@@ -270,7 +270,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     </figure>
     <div class="cards four">
       <div class="card c1"><span class="label l1">RQ1 · O1 · WP1</span><h4 class="q">Can generative video models replace motion capture as a source of 3D human motion data?</h4><p>Build and validate the instrument: video generation, pose estimation and physics stabilization. Release 35,000 hours of motion.</p></div>
-      <div class="card c2"><span class="label l2">RQ2 · O2 · WP2</span><h4 class="q">Do motion models obey scaling laws, and does synthetic data bend them?</h4><p>Measure the first scaling laws for motion synthesis over 100M to 16B parameters and 150 to 35,000 hours.</p></div>
+      <div class="card c2"><span class="label l2">RQ2 · O2 · WP2</span><h4 class="q">Do motion models obey scaling laws, and does synthetic data bend them?</h4><p>Measure the first large-scale scaling laws for motion synthesis over 100M to 16B parameters and 150 to 35,000 hours.</p></div>
       <div class="card c3"><span class="label l3">RQ3 · O3 · WP3</span><h4 class="q">Which properties of the video generator transfer to the learned motion model?</h4><p>Compare LTX-2.3 and Wan2.2 on a fixed prompt subset with identical motion models.</p></div>
       <div class="card c4"><span class="label l4">RQ4 · O4 · WP4</span><h4 class="q">Does motion knowledge distilled from video transfer to embodied control?</h4><p>Train and release the model family, fine-tune it with reinforcement learning and retarget it onto humanoid robots.</p></div>
     </div>
@@ -338,7 +338,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     <div class="sec-head">
       <span class="label l2">WP2 · RQ2</span>
       <h2>Scaling laws for motion</h2>
-      <p class="lead">Eight model sizes, six dataset scales and three seeds: the first scaling laws for motion synthesis.</p>
+      <p class="lead">Eight model sizes, six dataset scales and three seeds: the first large-scale scaling laws for motion synthesis.</p>
     </div>
     <figure>
       <div class="video"><video data-auto muted loop playsinline controls preload="none" poster="./website_content/images/scaling.jpg"><source src="./website_content/videos/scaling.mp4" type="video/mp4"></video></div>
@@ -447,7 +447,7 @@ footer { padding: 40px 0 60px; text-align: center; font-size: 14px; color: var(-
     </div>
     <div class="cards">
       <div class="card c1"><span class="label l1">O1</span><h4>Instrument and dataset</h4><p>The validated generation pipeline, and the physically stabilized SMPL motion with hands from 35,000 hours of generated video, with text annotations, released on Hugging Face with full generation provenance.</p></div>
-      <div class="card c2"><span class="label l2">O2</span><h4>Scaling laws</h4><p>The first scaling laws for motion synthesis, the synthetic-to-real exchange rate and the value of repeated data.</p></div>
+      <div class="card c2"><span class="label l2">O2</span><h4>Scaling laws</h4><p>The first large-scale scaling laws for motion synthesis, the synthetic-to-real exchange rate and the value of repeated data.</p></div>
       <div class="card c3"><span class="label l3">O3</span><h4>Generator transfer</h4><p>A measured answer to which properties of a video generator transfer to the learned motion model.</p></div>
       <div class="card c4"><span class="label l4">O4</span><h4>Foundation model and embodied transfer</h4><p>Released model weights (100M, 300M, 0.5B, 1B, 2B, 4B, 8B and 16B parameters), RL-fine-tuned scene-conditioned synthesis in 3D environments, and retargeting onto at least one humanoid robot platform.</p></div>
     </div>
